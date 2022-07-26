@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuniu.hospital_web.mapper.InquiryOrderMapper">
+  <resultMap id="BaseResultMap" type="com.wuniu.hospital_web.entity.InquiryOrder">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="orderNum" jdbcType="VARCHAR" property="ordernum" />
+    <result column="patient_id" jdbcType="INTEGER" property="patientId" />
+    <result column="specialist_id" jdbcType="INTEGER" property="specialistId" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="sum" jdbcType="DECIMAL" property="sum" />
+    <result column="payment" jdbcType="DECIMAL" property="payment" />
+    <result column="means" jdbcType="VARCHAR" property="means" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="inquery" jdbcType="VARCHAR" property="inquery" />
+    <result column="orderTime" jdbcType="TIMESTAMP" property="ordertime" />
+    <result column="payTime" jdbcType="TIMESTAMP" property="paytime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_inquiryorder
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wuniu.hospital_web.entity.InquiryOrder">
+    insert into t_inquiryorder (id, orderNum, patient_id, 
+      specialist_id, type, sum, 
+      payment, means, status, 
+      remark, inquery, orderTime, 
+      payTime)
+    values (#{id,jdbcType=INTEGER}, #{ordernum,jdbcType=VARCHAR}, #{patientId,jdbcType=INTEGER}, 
+      #{specialistId,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{sum,jdbcType=DECIMAL}, 
+      #{payment,jdbcType=DECIMAL}, #{means,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{inquery,jdbcType=VARCHAR}, #{ordertime,jdbcType=TIMESTAMP}, 
+      #{paytime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.wuniu.hospital_web.entity.InquiryOrder">
+    update t_inquiryorder
+    set orderNum = #{ordernum,jdbcType=VARCHAR},
+      patient_id = #{patientId,jdbcType=INTEGER},
+      specialist_id = #{specialistId,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
+      sum = #{sum,jdbcType=DECIMAL},
+      payment = #{payment,jdbcType=DECIMAL},
+      means = #{means,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      inquery = #{inquery,jdbcType=VARCHAR},
+      orderTime = #{ordertime,jdbcType=TIMESTAMP},
+      payTime = #{paytime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, orderNum, patient_id, specialist_id, type, sum, payment, means, status, 
+    remark, inquery, orderTime, payTime
+    from t_inquiryorder
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, orderNum, patient_id, specialist_id, type, sum, payment, means, status, 
+    remark, inquery, orderTime, payTime
+    from t_inquiryorder
+  </select>
+</mapper>

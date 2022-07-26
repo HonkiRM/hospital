@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuniu.hospital_web.mapper.PrescriptionMedicineMapper">
+  <resultMap id="BaseResultMap" type="com.wuniu.hospital_web.entity.PrescriptionMedicine">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="prescription_id" jdbcType="INTEGER" property="prescriptionId" />
+    <result column="medicine_id" jdbcType="INTEGER" property="medicineId" />
+    <result column="usage" jdbcType="VARCHAR" property="usage" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="editTime" jdbcType="TIMESTAMP" property="edittime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="doze" jdbcType="VARCHAR" property="doze" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_prescription_medicine
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wuniu.hospital_web.entity.PrescriptionMedicine">
+    insert into t_prescription_medicine (id, prescription_id, medicine_id, 
+      usage, createTime, editTime, 
+      status, doze)
+    values (#{id,jdbcType=INTEGER}, #{prescriptionId,jdbcType=INTEGER}, #{medicineId,jdbcType=INTEGER}, 
+      #{usage,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{edittime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=INTEGER}, #{doze,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.wuniu.hospital_web.entity.PrescriptionMedicine">
+    update t_prescription_medicine
+    set prescription_id = #{prescriptionId,jdbcType=INTEGER},
+      medicine_id = #{medicineId,jdbcType=INTEGER},
+      usage = #{usage,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      editTime = #{edittime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      doze = #{doze,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, prescription_id, medicine_id, usage, createTime, editTime, status, doze
+    from t_prescription_medicine
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, prescription_id, medicine_id, usage, createTime, editTime, status, doze
+    from t_prescription_medicine
+  </select>
+</mapper>

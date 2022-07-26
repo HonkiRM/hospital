@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuniu.hospital_web.mapper.DrugMapper">
+  <resultMap id="BaseResultMap" type="com.wuniu.hospital_web.entity.Drug">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="marketPrice" jdbcType="DOUBLE" property="marketprice" />
+    <result column="sellingPrice" jdbcType="DOUBLE" property="sellingprice" />
+    <result column="drugClass" jdbcType="VARCHAR" property="drugclass" />
+    <result column="drugUnit" jdbcType="VARCHAR" property="drugunit" />
+    <result column="approvalNumber" jdbcType="INTEGER" property="approvalnumber" />
+    <result column="functionIndis" jdbcType="VARCHAR" property="functionindis" />
+    <result column="adverseReaction" jdbcType="VARCHAR" property="adversereaction" />
+    <result column="mattersAttention" jdbcType="VARCHAR" property="mattersattention" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="editTime" jdbcType="TIMESTAMP" property="edittime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_drug
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wuniu.hospital_web.entity.Drug">
+    insert into t_drug (id, name, image, 
+      marketPrice, sellingPrice, drugClass, 
+      drugUnit, approvalNumber, functionIndis, 
+      adverseReaction, mattersAttention, createTime, 
+      editTime, status)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, 
+      #{marketprice,jdbcType=DOUBLE}, #{sellingprice,jdbcType=DOUBLE}, #{drugclass,jdbcType=VARCHAR}, 
+      #{drugunit,jdbcType=VARCHAR}, #{approvalnumber,jdbcType=INTEGER}, #{functionindis,jdbcType=VARCHAR}, 
+      #{adversereaction,jdbcType=VARCHAR}, #{mattersattention,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{edittime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.wuniu.hospital_web.entity.Drug">
+    update t_drug
+    set name = #{name,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      marketPrice = #{marketprice,jdbcType=DOUBLE},
+      sellingPrice = #{sellingprice,jdbcType=DOUBLE},
+      drugClass = #{drugclass,jdbcType=VARCHAR},
+      drugUnit = #{drugunit,jdbcType=VARCHAR},
+      approvalNumber = #{approvalnumber,jdbcType=INTEGER},
+      functionIndis = #{functionindis,jdbcType=VARCHAR},
+      adverseReaction = #{adversereaction,jdbcType=VARCHAR},
+      mattersAttention = #{mattersattention,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      editTime = #{edittime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, name, image, marketPrice, sellingPrice, drugClass, drugUnit, approvalNumber, 
+    functionIndis, adverseReaction, mattersAttention, createTime, editTime, status
+    from t_drug
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, name, image, marketPrice, sellingPrice, drugClass, drugUnit, approvalNumber, 
+    functionIndis, adverseReaction, mattersAttention, createTime, editTime, status
+    from t_drug
+  </select>
+</mapper>

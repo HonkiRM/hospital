@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuniu.hospital_web.mapper.LevelMapper">
+  <resultMap id="BaseResultMap" type="com.wuniu.hospital_web.entity.Level">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="editTime" jdbcType="TIMESTAMP" property="edittime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_level
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wuniu.hospital_web.entity.Level">
+    insert into t_level (id, name, createTime, 
+      editTime, status)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{edittime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.wuniu.hospital_web.entity.Level">
+    update t_level
+    set name = #{name,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      editTime = #{edittime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, name, createTime, editTime, status
+    from t_level
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, name, createTime, editTime, status
+    from t_level
+  </select>
+</mapper>

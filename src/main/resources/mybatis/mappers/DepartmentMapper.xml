@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuniu.hospital_web.mapper.DepartmentMapper">
+  <resultMap id="BaseResultMap" type="com.wuniu.hospital_web.entity.Department">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="departmentNum" jdbcType="VARCHAR" property="departmentnum" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="departmentTel" jdbcType="VARCHAR" property="departmenttel" />
+    <result column="notes" jdbcType="VARCHAR" property="notes" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="editTime" jdbcType="TIMESTAMP" property="edittime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_department
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wuniu.hospital_web.entity.Department">
+    insert into t_department (id, name, departmentNum, 
+      address, departmentTel, notes, 
+      sort, createTime, editTime, 
+      status)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{departmentnum,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{departmenttel,jdbcType=VARCHAR}, #{notes,jdbcType=VARCHAR}, 
+      #{sort,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{edittime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.wuniu.hospital_web.entity.Department">
+    update t_department
+    set name = #{name,jdbcType=VARCHAR},
+      departmentNum = #{departmentnum,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      departmentTel = #{departmenttel,jdbcType=VARCHAR},
+      notes = #{notes,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      editTime = #{edittime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, name, departmentNum, address, departmentTel, notes, sort, createTime, 
+    editTime, status
+    from t_department
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, name, departmentNum, address, departmentTel, notes, sort, createTime, 
+    editTime, status
+    from t_department
+  </select>
+</mapper>

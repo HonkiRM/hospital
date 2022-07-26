@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuniu.hospital_web.mapper.InquiryMapper">
+  <resultMap id="BaseResultMap" type="com.wuniu.hospital_web.entity.Inquiry">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="originalPrice" jdbcType="DECIMAL" property="originalprice" />
+    <result column="currentPrice" jdbcType="DECIMAL" property="currentprice" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_inquiry
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wuniu.hospital_web.entity.Inquiry">
+    insert into t_inquiry (id, name, originalPrice, 
+      currentPrice, type, status
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{originalprice,jdbcType=DECIMAL}, 
+      #{currentprice,jdbcType=DECIMAL}, #{type,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.wuniu.hospital_web.entity.Inquiry">
+    update t_inquiry
+    set name = #{name,jdbcType=VARCHAR},
+      originalPrice = #{originalprice,jdbcType=DECIMAL},
+      currentPrice = #{currentprice,jdbcType=DECIMAL},
+      type = #{type,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, name, originalPrice, currentPrice, type, status
+    from t_inquiry
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, name, originalPrice, currentPrice, type, status
+    from t_inquiry
+  </select>
+</mapper>

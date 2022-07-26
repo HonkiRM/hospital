@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuniu.hospital_web.mapper.SectionMapper">
+  <resultMap id="BaseResultMap" type="com.wuniu.hospital_web.entity.Section">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sectionNum" jdbcType="VARCHAR" property="sectionnum" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="editTime" jdbcType="TIMESTAMP" property="edittime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_section
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wuniu.hospital_web.entity.Section">
+    insert into t_section (id, name, sectionNum, 
+      image, creator, sort, 
+      createTime, editTime, status
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sectionnum,jdbcType=VARCHAR}, 
+      #{image,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{edittime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.wuniu.hospital_web.entity.Section">
+    update t_section
+    set name = #{name,jdbcType=VARCHAR},
+      sectionNum = #{sectionnum,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      editTime = #{edittime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, name, sectionNum, image, creator, sort, createTime, editTime, status
+    from t_section
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, name, sectionNum, image, creator, sort, createTime, editTime, status
+    from t_section
+  </select>
+</mapper>

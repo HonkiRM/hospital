@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--引入mysql的驱动-->
+    <classPathEntry location="D:\devlop\repository\mysql\mysql-connector-java\5.1.48\mysql-connector-java-5.1.48.jar"/>
+
+    <context id="DB2Tables" targetRuntime="MyBatis3Simple">
+        <!--去掉生成的注释-->
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/hospital"
+                        userId="root"
+                        password="950404">
+
+            <!-- 处理mysql多个数据库拥有相同表名时，生成实体的问题 -->
+            <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
+
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!--生成实体-->
+        <javaModelGenerator targetPackage="com.wuniu.hospital_web.entity" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!--生成映射文件-->
+        <sqlMapGenerator targetPackage="mybatis.mappers" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!--生成接口文件-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.wuniu.hospital_web.mapper" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <table schema="DB2ADMIN" tableName="t_advertise" domainObjectName="Advertise"></table>
+        <table schema="DB2ADMIN" tableName="t_article" domainObjectName="Article"></table>
+        <table schema="DB2ADMIN" tableName="t_department" domainObjectName="Department"></table>
+        <table schema="DB2ADMIN" tableName="t_drug" domainObjectName="Drug"></table>
+        <table schema="DB2ADMIN" tableName="t_drugunit" domainObjectName="DrugUnit"></table>
+        <table schema="DB2ADMIN" tableName="t_duty" domainObjectName="Duty"></table>
+        <table schema="DB2ADMIN" tableName="t_health" domainObjectName="Health"></table>
+        <table schema="DB2ADMIN" tableName="t_hospital" domainObjectName="Hospital"></table>
+        <table schema="DB2ADMIN" tableName="t_illness" domainObjectName="Illness"></table>
+        <table schema="DB2ADMIN" tableName="t_inquiry" domainObjectName="Inquiry"></table>
+        <table schema="DB2ADMIN" tableName="t_inquiryorder" domainObjectName="InquiryOrder"></table>
+        <table schema="DB2ADMIN" tableName="t_level" domainObjectName="Level"></table>
+        <table schema="DB2ADMIN" tableName="t_manager" domainObjectName="Manager"></table>
+        <table schema="DB2ADMIN" tableName="t_patient" domainObjectName="Patient"></table>
+        <table schema="DB2ADMIN" tableName="t_permission" domainObjectName="Permission"></table>
+        <table schema="DB2ADMIN" tableName="t_prescription" domainObjectName="Prescription"></table>
+        <table schema="DB2ADMIN" tableName="t_prescription_medicine" domainObjectName="PrescriptionMedicine"></table>
+        <table schema="DB2ADMIN" tableName="t_prescriptiondrug" domainObjectName="prescriptionDrug"></table>
+        <table schema="DB2ADMIN" tableName="t_prescriptionorder" domainObjectName="prescriptionOrder"></table>
+        <table schema="DB2ADMIN" tableName="t_reviews" domainObjectName="Reviews"></table>
+        <table schema="DB2ADMIN" tableName="t_role" domainObjectName="Role"></table>
+        <table schema="DB2ADMIN" tableName="t_section" domainObjectName="Section"></table>
+        <table schema="DB2ADMIN" tableName="t_settings" domainObjectName="Settings"></table>
+        <table schema="DB2ADMIN" tableName="t_settlement" domainObjectName="Settlement"></table>
+        <table schema="DB2ADMIN" tableName="t_specialist" domainObjectName="Specialist"></table>
+        <table schema="DB2ADMIN" tableName="t_withdraw" domainObjectName="Withdraw"></table>
+
+    </context>
+</generatorConfiguration>

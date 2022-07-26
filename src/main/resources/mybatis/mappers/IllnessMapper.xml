@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuniu.hospital_web.mapper.IllnessMapper">
+  <resultMap id="BaseResultMap" type="com.wuniu.hospital_web.entity.Illness">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="synopsis" jdbcType="VARCHAR" property="synopsis" />
+    <result column="manifestation" jdbcType="VARCHAR" property="manifestation" />
+    <result column="diagnosis" jdbcType="VARCHAR" property="diagnosis" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="editTime" jdbcType="TIMESTAMP" property="edittime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_illness
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wuniu.hospital_web.entity.Illness">
+    insert into t_illness (id, name, synopsis, 
+      manifestation, diagnosis, createTime, 
+      editTime, status)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{synopsis,jdbcType=VARCHAR}, 
+      #{manifestation,jdbcType=VARCHAR}, #{diagnosis,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{edittime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.wuniu.hospital_web.entity.Illness">
+    update t_illness
+    set name = #{name,jdbcType=VARCHAR},
+      synopsis = #{synopsis,jdbcType=VARCHAR},
+      manifestation = #{manifestation,jdbcType=VARCHAR},
+      diagnosis = #{diagnosis,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      editTime = #{edittime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, name, synopsis, manifestation, diagnosis, createTime, editTime, status
+    from t_illness
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, name, synopsis, manifestation, diagnosis, createTime, editTime, status
+    from t_illness
+  </select>
+</mapper>

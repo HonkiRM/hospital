@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuniu.hospital_web.mapper.ReviewsMapper">
+  <resultMap id="BaseResultMap" type="com.wuniu.hospital_web.entity.Reviews">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="manager_id" jdbcType="INTEGER" property="managerId" />
+    <result column="rank" jdbcType="REAL" property="rank" />
+    <result column="patient_id" jdbcType="INTEGER" property="patientId" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_reviews
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wuniu.hospital_web.entity.Reviews">
+    insert into t_reviews (id, order_id, manager_id, 
+      rank, patient_id, status, 
+      content)
+    values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{managerId,jdbcType=INTEGER}, 
+      #{rank,jdbcType=REAL}, #{patientId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.wuniu.hospital_web.entity.Reviews">
+    update t_reviews
+    set order_id = #{orderId,jdbcType=INTEGER},
+      manager_id = #{managerId,jdbcType=INTEGER},
+      rank = #{rank,jdbcType=REAL},
+      patient_id = #{patientId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, order_id, manager_id, rank, patient_id, status, content
+    from t_reviews
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, order_id, manager_id, rank, patient_id, status, content
+    from t_reviews
+  </select>
+</mapper>

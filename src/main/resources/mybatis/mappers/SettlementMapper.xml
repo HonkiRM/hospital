@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuniu.hospital_web.mapper.SettlementMapper">
+  <resultMap id="BaseResultMap" type="com.wuniu.hospital_web.entity.Settlement">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="orderNum" jdbcType="VARCHAR" property="ordernum" />
+    <result column="hospital_id" jdbcType="INTEGER" property="hospitalId" />
+    <result column="settlement_amount" jdbcType="DECIMAL" property="settlementAmount" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_settlement
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wuniu.hospital_web.entity.Settlement">
+    insert into t_settlement (id, orderNum, hospital_id, 
+      settlement_amount, createTime)
+    values (#{id,jdbcType=INTEGER}, #{ordernum,jdbcType=VARCHAR}, #{hospitalId,jdbcType=INTEGER}, 
+      #{settlementAmount,jdbcType=DECIMAL}, #{createtime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.wuniu.hospital_web.entity.Settlement">
+    update t_settlement
+    set orderNum = #{ordernum,jdbcType=VARCHAR},
+      hospital_id = #{hospitalId,jdbcType=INTEGER},
+      settlement_amount = #{settlementAmount,jdbcType=DECIMAL},
+      createTime = #{createtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, orderNum, hospital_id, settlement_amount, createTime
+    from t_settlement
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, orderNum, hospital_id, settlement_amount, createTime
+    from t_settlement
+  </select>
+</mapper>

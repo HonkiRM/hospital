@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuniu.hospital_web.mapper.PatientMapper">
+  <resultMap id="BaseResultMap" type="com.wuniu.hospital_web.entity.Patient">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="gender" jdbcType="VARCHAR" property="gender" />
+    <result column="clinicSituation" jdbcType="VARCHAR" property="clinicsituation" />
+    <result column="patientTime" jdbcType="VARCHAR" property="patienttime" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="tel" jdbcType="INTEGER" property="tel" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="illness_id" jdbcType="INTEGER" property="illnessId" />
+    <result column="relation" jdbcType="VARCHAR" property="relation" />
+    <result column="birth" jdbcType="DATE" property="birth" />
+    <result column="createTime" jdbcType="DATE" property="createtime" />
+    <result column="editTime" jdbcType="DATE" property="edittime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_patient
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wuniu.hospital_web.entity.Patient">
+    insert into t_patient (id, name, gender, 
+      clinicSituation, patientTime, image, 
+      tel, address, email, 
+      illness_id, relation, birth, 
+      createTime, editTime, status
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, 
+      #{clinicsituation,jdbcType=VARCHAR}, #{patienttime,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, 
+      #{tel,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{illnessId,jdbcType=INTEGER}, #{relation,jdbcType=VARCHAR}, #{birth,jdbcType=DATE}, 
+      #{createtime,jdbcType=DATE}, #{edittime,jdbcType=DATE}, #{status,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.wuniu.hospital_web.entity.Patient">
+    update t_patient
+    set name = #{name,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
+      clinicSituation = #{clinicsituation,jdbcType=VARCHAR},
+      patientTime = #{patienttime,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      illness_id = #{illnessId,jdbcType=INTEGER},
+      relation = #{relation,jdbcType=VARCHAR},
+      birth = #{birth,jdbcType=DATE},
+      createTime = #{createtime,jdbcType=DATE},
+      editTime = #{edittime,jdbcType=DATE},
+      status = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, name, gender, clinicSituation, patientTime, image, tel, address, email, 
+    illness_id, relation, birth, createTime, editTime, status
+    from t_patient
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, name, gender, clinicSituation, patientTime, image, tel, address, email, 
+    illness_id, relation, birth, createTime, editTime, status
+    from t_patient
+  </select>
+</mapper>

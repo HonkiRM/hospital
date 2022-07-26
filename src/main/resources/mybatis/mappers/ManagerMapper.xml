@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuniu.hospital_web.mapper.ManagerMapper">
+  <resultMap id="BaseResultMap" type="com.wuniu.hospital_web.entity.Manager">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="gender" jdbcType="INTEGER" property="gender" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="duty_id" jdbcType="INTEGER" property="dutyId" />
+    <result column="hospital_id" jdbcType="INTEGER" property="hospitalId" />
+    <result column="department_id" jdbcType="INTEGER" property="departmentId" />
+    <result column="section_id" jdbcType="INTEGER" property="sectionId" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="editTime" jdbcType="TIMESTAMP" property="edittime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_manager
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wuniu.hospital_web.entity.Manager">
+    insert into t_manager (id, code, name, 
+      password, image, gender, 
+      tel, email, duty_id, 
+      hospital_id, department_id, section_id, 
+      createTime, editTime, status
+      )
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER}, 
+      #{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{dutyId,jdbcType=INTEGER}, 
+      #{hospitalId,jdbcType=INTEGER}, #{departmentId,jdbcType=INTEGER}, #{sectionId,jdbcType=INTEGER}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{edittime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.wuniu.hospital_web.entity.Manager">
+    update t_manager
+    set code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=INTEGER},
+      tel = #{tel,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      duty_id = #{dutyId,jdbcType=INTEGER},
+      hospital_id = #{hospitalId,jdbcType=INTEGER},
+      department_id = #{departmentId,jdbcType=INTEGER},
+      section_id = #{sectionId,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      editTime = #{edittime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, code, name, password, image, gender, tel, email, duty_id, hospital_id, 
+    department_id, section_id, createTime, editTime, status
+    from t_manager
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, code, name, password, image, gender, tel, email, duty_id, hospital_id, 
+    department_id, section_id, createTime, editTime, status
+    from t_manager
+  </select>
+</mapper>
